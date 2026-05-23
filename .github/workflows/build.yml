@@ -34,3 +34,9 @@ jobs:
       env:
         _JAVA_OPTIONS: "-Xmx4g -Xms2g"
       run: gradle build --no-daemon
+
+    - name: Calisan Mod Dosyasini Yukle
+      uses: actions/upload-artifact@v4
+      with:
+        name: FluxEsp-Mod-Paketi
+        path: build/libs/*.jar
