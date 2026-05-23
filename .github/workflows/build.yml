@@ -15,11 +15,14 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: src.zip Dosyasini Ac
+    - name: src.zip Dosyasini Ac ve Harf Hatasını Otomatik Düzelt
       run: |
         if [ -f src.zip ]; then
           unzip src.zip
           rm src.zip
+        fi
+        if [ -f src/main/java/com/esp/WorlRendererMixin.java ]; then
+          sed -i 's/public class WorldRendererMixin/public class WorlRendererMixin/g' src/main/java/com/esp/WorlRendererMixin.java
         fi
 
     - name: Gradle 8.3 Sürümünü Hazır İndir ve Kur
