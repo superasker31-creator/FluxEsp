@@ -27,5 +27,7 @@ jobs:
       with:
         gradle-version: '8.3'
 
-    - name: Modu Derle
+    - name: Modu Derle (Tam Güç RAM ile)
+      env:
+        _JAVA_OPTIONS: "-Xmx4g -Xms2g"
       run: gradle build --no-daemon
