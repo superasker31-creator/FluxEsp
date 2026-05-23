@@ -15,17 +15,21 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: Gradle Calistirma Izni Ver
-      run: chmod +x gradlew
-      continue-on-error: true
+    - name: src.zip Dosyasini Ac
+      run: |
+        if [ -f src.zip ]; then
+          unzip src.zip
+          rm src.zip
+        fi
+
+    - name: Gradle Sistemini Otomatik Kur
+      run: gradle wrapper --gradle-version 8.1.1
 
     - name: Modu Derle
       run: ./gradlew build
-      continue-on-error: true
 
     - name: Calisan Mod Dosyasini Yukle
       uses: actions/upload-artifact@v3
       with:
         name: FluxEsp-Mod-Paketi
         path: build/libs/*.jar
-
