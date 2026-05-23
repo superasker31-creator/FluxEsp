@@ -1,29 +1,53 @@
+pluginManagement {
+    repositories {
+        maven { url = "https://maven.fabricmc.net/" }
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
 plugins {
     id 'fabric-loom' version '1.3-SNAPSHOT'
+    id 'maven-publish'
 }
 
 version = '1.0.0'
-group = 'com.esp'
+group = 'com.superasker.fluxesp'
 
-// Termux'taki Java sürümün ne olursa olsun (ister 21 ister 25) 
-// Gradle'ın hata vermeden zorla derlemesini sağlıyoruz.
-tasks.withType(JavaCompile).configureEach {
-    options.compilerArgs << "-Xlint:-options"
+repositories {
+    maven { url = "https://maven.fabricmc.net/" }
+    mavenCentral()
 }
 
 dependencies {
     minecraft "com.mojang:minecraft:1.20.1"
     mappings "net.fabricmc:yarn:1.20.1+build.10:v2"
     modImplementation "net.fabricmc:fabric-loader:0.14.22"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:0.85.0+1.20.1"
+
+    // Eğer modun çalışması için Fabric API gerekiyorsa alt satırdaki çift eğik çizgiyi silebilirsin
+    // modImplementation "net.fabricmc.fabric-api:fabric-api:0.87.0+1.20.1"
 }
 
-// Fabric'in modu tanıması için gereken kaynak dosyalarını pakete pürüzsüzce dahil et
 processResources {
     inputs.property "version", project.version
-    filteringCharset = 'UTF-8'
 
     filesMatching("fabric.mod.json") {
         expand "version": project.version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 17
+}
+
+java {
+    withSourcesJar()
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+jar {
+    from("LICENSE") {
+        rename { "${it}_${project.archivesBaseName}"}
     }
 }
