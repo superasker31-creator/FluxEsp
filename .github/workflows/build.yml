@@ -22,11 +22,13 @@ jobs:
           rm src.zip
         fi
 
-    - name: Gradle Sistemini Sabitle (v8.3)
-      run: gradle wrapper --gradle-version 8.3
+    - name: Gradle 8.3 Sürümünü Zorla Kur
+      run: |
+        gradle wrapper --gradle-version 8.3
+        chmod +x gradlew
 
     - name: Modu Derle
-      run: ./gradlew build
+      run: ./gradlew build --no-daemon
 
     - name: Calisan Mod Dosyasini Yukle
       uses: actions/upload-artifact@v4
