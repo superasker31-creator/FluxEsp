@@ -1,0 +1,31 @@
+name: Minecraft Mod Compiler
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Kodlari Kopyala
+      uses: actions/checkout@v3
+
+    - name: Java 17 Kur
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
+    - name: Gradle Calistirma Izni Ver
+      run: chmod +x gradlew
+      continue-on-error: true
+
+    - name: Modu Derle
+      run: ./gradlew build
+      continue-on-error: true
+
+    - name: Calisan Mod Dosyasini Yukle
+      uses: actions/upload-artifact@v3
+      with:
+        name: FluxEsp-Mod-Paketi
+        path: build/libs/*.jar
+
