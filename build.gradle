@@ -12,7 +12,8 @@ apply plugin: "fabric-loom"
 apply plugin: "maven-publish"
 
 version = '1.0.0'
-group = 'com.superasker.fluxesp'
+// Senin paket yapın com.esp olduğu için burayı düzelttik:
+group = 'com.esp'
 
 repositories {
     maven { url = "https://maven.fabricmc.net/" }
@@ -39,7 +40,6 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 java {
-    // Hata veren sourcesJar görevini buradan kaldırarak engelledik
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
 }
