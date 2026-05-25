@@ -18,9 +18,10 @@ jobs:
     - name: src.zip Dosyasini Ac ve Mixin Hatalarini Tam Düzelt
       run: |
         if [ -f src.zip ]; then
-          unzip src.zip
+          unzip -o src.zip
           rm src.zip
         fi
+
         
         # 1. Eğer hatalı isimlendirilmiş dosya varsa adını gerçek adına (d harfi ile) çevir:
         if [ -f src/main/java/com/esp/WorlRendererMixin.java ]; then
