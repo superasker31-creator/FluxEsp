@@ -7,7 +7,6 @@
   "authors": ["superasker31-creator"],
   "contact": {},
   "license": "MIT",
-  "icon": "assets/fluxesp/icon.png",
   "environment": "*",
   "entrypoints": {
     "client": [
@@ -15,7 +14,7 @@
     ]
   },
   "mixins": [
-    "fluxesp.mixins.json"
+    "esp.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.14.22",
@@ -23,4 +22,3 @@
     "java": ">=17"
   }
 }
-
